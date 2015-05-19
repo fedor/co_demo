@@ -42,7 +42,7 @@ Data and execution flow in the examples:
 	
 	Notice: .next()
 
-5. CO + Generators
+5. CO + Generators.
 
 	Transitional showcase. Not actually an example.
 	
@@ -54,7 +54,7 @@ Data and execution flow in the examples:
 	 - 2 ways to catch errors (Promise().catch(e) & try-catch)
 	 - TODO: put debug printing to co..toPromise() and co..next(). What would happen?
 
-6. CO + Promises
+6. CO + Promises.
 
 	CO allows to "yield" on Promises, get result or Error "throw".
 
@@ -66,7 +66,7 @@ Data and execution flow in the examples:
 	CONS:
 	 - Manually implemented Promises contains all CONS of Promises solution.
 
-7. CO + Bluebird
+7. CO + Bluebird.
 
 	Bluebird reimplemented Promises + add additional functionality, like promisification.
 	Promisification: callback-async-function --> promise-return-function
