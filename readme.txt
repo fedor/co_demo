@@ -92,3 +92,7 @@ Suggestions:
    - Less potential problems.
    - Cleaner code.
    - Centralized error handling.
+
+--------
+
+BONUS: async.each() example in co_async_each.js
