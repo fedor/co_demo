@@ -20,6 +20,7 @@ var async3 = function* (input) {
 	yield input;
 };
 
+// Not a generator, still Promise
 var delay = function(mil) {
 	return new Promise(function(resolve, reject) {
 		setTimeout(resolve, mil);
