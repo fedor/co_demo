@@ -1,4 +1,4 @@
-// Promise version
+// CO + generators version
 var async1 = function* (input) {
 	console.log('async1');
 	// yield input;
