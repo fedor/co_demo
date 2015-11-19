@@ -40,7 +40,11 @@ Data and execution flow in the examples:
 	Just a showcase how to call generators. Not actually an example.
 	Generators themself are not about flow-control or errors-handling.
 	
-	Notice: .next()
+	Notice:
+	 - "function*" defines "generator function" a function you can re-enter
+	 - Generator function returns "generator" an object to control its execution
+	 - .next().value
+	 - yield cause value return from generator function
 
 5. CO + Generators.
 
@@ -51,6 +55,7 @@ Data and execution flow in the examples:
 	 - co calls next()
 	 - next().value --> yield
 	 - yield --> return
+	 - co() return Promise
 	 - 2 ways to catch errors (Promise().catch(e) & try-catch)
 	 - TODO: put debug printing to co..toPromise() and co..next(). What would happen?
 
