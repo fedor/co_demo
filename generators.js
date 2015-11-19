@@ -1,4 +1,7 @@
-// Promise version
+// Generators version
+// Read about generator functions and generators:
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*
+
 var async1 = function* (input) {
 	console.log('async1');
 	yield input;
