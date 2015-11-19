@@ -1,0 +1,25 @@
+{
+  "name": "co_demo",
+  "version": "1.0.0",
+  "description": "co / promises / generators / bluebird usage example",
+  "main": "sync.js",
+  "dependencies": {
+    "bluebird": "^2.10.2",
+    "co": "^4.6.0",
+    "async": "^1.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://korshunov@github.com/korshunov/co_demo.git"
+  },
+  "author": "Fedor Korshunov <mail@fedor.cc>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/korshunov/co_demo/issues"
+  },
+  "homepage": "https://github.com/korshunov/co_demo#readme"
+}
