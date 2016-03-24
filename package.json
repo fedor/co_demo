@@ -4,9 +4,10 @@
   "description": "co / promises / generators / bluebird usage example",
   "main": "sync.js",
   "dependencies": {
+    "async": "^1.4.2",
     "bluebird": "^2.10.2",
     "co": "^4.6.0",
-    "async": "^1.4.2"
+    "moment": "^2.12.0"
   },
   "devDependencies": {},
   "scripts": {

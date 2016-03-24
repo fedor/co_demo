@@ -20,7 +20,9 @@ var handleAsync = bb.promisify(handle);
 co(function *() {
 	var elems = [1,2,3,4,5];
 	var promises = []
-	for (var i = 0; i < elems.length; i++) promises.push( handleAsync(elems[i]) ); // NO yield
+	for (var i = 0; i < elems.length; i++) {
+		promises.push( handleAsync(elems[i]) ); // NO yield
+	}
 	// All jobs are working now!
 	yield promises;
 	console.log('done!');

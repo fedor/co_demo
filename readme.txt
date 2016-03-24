@@ -23,22 +23,17 @@ Data and execution flow in the examples:
 
 	PROS:
 	 - Async
-	 - Safe FOR SINGLE CHAIN
-	 - Centralized Errors Handling FOR SINGLE CHAIN
+	 - Centralized Errors Handling
 	 - LESS Callback Hell
 	CONS:
 	 - mini-Callback Hell
-	 - No centralized Errors Handling BETWEEN CHAINS
 	 - 2 ways to report errors (callback and throw);
-
-	Notice:
-	 - Execution chain.
-	 - TODO: remove error handling. What would happen?
+	TODO:
+	 - Remove error handling. What would happen?
 
 4. Generators.
 
 	Just a showcase how to call generators. Not actually an example.
-	Generators themself are not about flow-control or errors-handling.
 	
 	Notice:
 	 - "function*" defines "generator function" a function you can re-enter
@@ -46,40 +41,57 @@ Data and execution flow in the examples:
 	 - .next().value
 	 - yield cause value return from generator function
 
-5. CO + Generators.
+5. Promises + Generators #1
 
-	Transitional showcase. Not actually an example.
+	Try to use generator for control flow of async Promise-based functions
 	
 	Notice:
-	 - co takes control over yield
-	 - co calls next()
-	 - next().value --> yield
-	 - yield --> return
-	 - co() return Promise
-	 - 2 ways to catch errors (Promise().catch(e) & try-catch)
-	 - TODO: put debug printing to co..toPromise() and co..next(). What would happen?
+	 - main()
+	 - runner()
 
-6. CO + Promises.
+6. Promises + Generators #2
 
-	CO allows to "yield" on Promises, get result or Error "throw".
+	Add correct error handling. Changes are commented.
+
+	Notice:
+	 - .throw() will actually return result, similar to .next()
+
+7. Promises + Generators #3
+
+	Allow runner to accept generator function, not generator
+
+	Notice:
+	 - runner(main()) --> run(main)
+
+8. Promises + Generators #4
+
+	Turn runner into a Promise fabric. Changes are commented.
+
+	Notice:
+	 - how async2() was simplified with runner
+
+9. Promises + Generators: result
+
+	All custom async functions implemented with runner
+
+	Notice:
+	 - delay() still require manual promisification
 
 	PROS:
 	 - Async
 	 - Safe
 	 - Centralized Errors Handling
-	 - No callback hell while uses co(function *(){...})
-	CONS:
-	 - Manually implemented Promises contains all CONS of Promises solution.
-
-7. CO + Bluebird.
-
-	Bluebird reimplemented Promises + add additional functionality, like promisification.
-	Promisification: callback-async-function --> promise-return-function
-
-	PROS:
-	 - Same
+	 - No callback hell while uses run(function *(){...})
 	 - Single way to report error across the code.
 	 - No Promise-CONS in own code
+
+10. co and bluebird
+
+	co is a popular "runner" from TJ. It can handle Promises,
+	Promises inside arrays or objects, generators, etc.
+
+	bluebird reimplements Promises + add additional functionality, like promisification.
+	Promisification: callback-async-function --> promise-return-function
 
 --------
 
@@ -88,10 +100,12 @@ Suggestions:
  - Promifify functions with callbacks, use bb.promisify() && bb.promisifyAll().
 
  - Use co(function* () {...}) for flow-control.
+
+ - Avoid function-based handlers e.g. use for loop, not .forEach()
  
  - Provide/Return Promise interface, not traditional-callbacks.
- 
- - Create Promise thru co:
+
+ - Create Promise via co:
    - "return co(function* () {...});"
    - NOT "return new Promise(function(resolve, reject) {...})";
    - Less potential problems.

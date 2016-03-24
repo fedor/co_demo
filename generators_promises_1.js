@@ -41,19 +41,37 @@ var delay = function(mil) {
 	});
 };
 
-async1(0)
-	.then(function(r1) {
-		return delay(2000)
-			.then(function() {
-				return async2(r1);
-			});
-	})
-	.then(function(r3) {
-		return async3(r3);
-	})
-	.then(function(r4) {
-		log('Result: ' + r4);
-	})
-	.catch(function(e) {
-		log('Catched! ' + e);
-	});
+var main = function* () {
+	try {
+		var r1 = yield async1(0);
+		log('\t', 'async1 returned', r1);
+		yield delay(2000);
+		var r2 = yield async2(r1);
+		log('\t', 'async2 returned', r2);
+		var r3 = yield async3(r2);
+		log('\t', 'async3 returned', r3);
+		log('RESULT', r3);
+	} catch (e) {
+		log('ERROR', e);
+	}
+};
+
+var runner = function(generator, next_value) {
+	var result = generator.next(next_value);
+	var value = result.value;
+	
+	if (result.done) {
+		return;
+	}
+
+	value
+		.then(function(result) {
+			runner(generator, result);
+		})
+		.catch(function(err) {
+			generator.throw(err);
+		});
+};
+
+var generator = main();
+runner(generator);

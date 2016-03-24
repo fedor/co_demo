@@ -1,50 +1,47 @@
 // Generators version
 // Read about generator functions and generators:
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*
+'use strict';
+var log = require('./log');
 
-var async1 = function* (input) {
-	console.log('async1');
-	yield input;
+var generator_function = function* (input1) {
+	log('Generator block #1');
+	var input2 = yield ++input1;
+
+	log('Generator block #2');
+	var input3 = yield ++input2;
+
+	log('Generator block #3');
+	return ++input3;
 };
 
-var async2 = function* (input) {
-	console.log('async2');
-
-	///////////////////////
-	// Ways to report error
-	///////////////////////
-	
-	// throw Error('throw from async2');
-	yield input;
-};
-
-var async3 = function* (input) {
-	console.log('async3');
-	yield input;
-};
-
-// Not a generator, still Promise
-var delay = function(mil) {
-	return new Promise(function(resolve, reject) {
-		setTimeout(resolve, mil);
-	});
-};
-
-var errorHandler = function (e) {
-	console.log('Catched! ' + e);
+// Not a generator, just function
+function delay(time) {
+	log('I\'m', time, 'ms sync delay...');
+	var end_time = (new Date()).valueOf() + time;
+	var now = new Date();
+	while (now.valueOf() < end_time) {
+		now = new Date();
+	}
 }
 
 try {
-	var r1 = async1(1).next().value;
-	delay(2000).then(function() {
-		try {
-			var r2 = async2(r1).next().value;
-			var r3 = async3(r2).next().value;
-			console.log('Result: ' + r3);
-		} catch (e) {
-			errorHandler(e);
-		}
-	});
+	var generator = generator_function(0); // --> input1
+	log('Generator initialized', generator, '\n');
+
+	var r1 = generator.next();
+	log('\treturned', r1, '\n');
+
+	delay(2000);
+
+	var r2 = generator.next(1); // --> input2
+	log('\treturned', r2, '\n');
+
+	var r3 = generator.next(2); // --> input3
+	log('\treturned', r3, '\n');
+
+	var r4 = generator.next(0);
+	log('\treturned', r4, '\n');
 } catch (e) {
-	errorHandler(e);
+	log('Catched! ' + e);
 }

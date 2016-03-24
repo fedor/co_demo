@@ -17,6 +17,8 @@ var async2 = function(input) {
 		///////////////////////
 		
 		// throw Error('throw from async2');
+
+		///////////////////////
 		return input;
 	});
 };
