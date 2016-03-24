@@ -99,11 +99,11 @@ Data and execution flow in the examples:
 
 Suggestions:
 
- - Promifify functions with callbacks, use bb.promisify() && bb.promisifyAll().
+ - Promisify functions with callbacks, use bb.promisify() && bb.promisifyAll().
 
  - Use co(function* () {...}) for flow-control.
 
- - Avoid function-based handlers e.g. use for loop, not .forEach()
+ - Avoid function-based handlers e.g. use for-loop, not .forEach()
  
  - Provide/Return Promise interface, not traditional-callbacks.
 
