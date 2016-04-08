@@ -1,4 +1,7 @@
-https://github.com/fedor/co_demo
+Before we start:
+	> git clone http://github.com/fedor/co_demo
+	> cd co_demo
+	> npm install
 
 Data and execution flow in the examples:
  - input --> (a)sync1() --> delay(2000) --> (a)sync2() --> (a)sync3() --> output
