@@ -16,7 +16,7 @@ var generator_function = function* (input1) {
 };
 
 // Not a generator, just function
-function delay(time) {
+function delay (time) {
 	log('I\'m', time, 'ms sync delay...');
 	var end_time = (new Date()).valueOf() + time;
 	var now = new Date();
@@ -35,6 +35,7 @@ try {
 	delay(2000);
 
 	var r2 = generator.next(1); // --> input2
+	// generator.throw('some error');
 	log('\treturned', r2, '\n');
 
 	var r3 = generator.next(2); // --> input3

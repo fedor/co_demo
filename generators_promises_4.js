@@ -5,11 +5,16 @@ var run = function(generator_function) {
 
 	// return new Promise(function(resolve, reject) {
 		var runner = function(next_value) {
-			// try {
-				var result = generator.next(next_value);
-			// } catch(e) {
-			// 	reject(e);
-			// 	return;
+			var result = null;
+			// if (next_value && next_value.value) {
+			// 	result = next_value;
+			// } else {
+			// 	try {
+					result = generator.next(next_value);
+			// 	} catch(e) {
+			// 		reject(e);
+			// 		return;
+			// 	}
 			// }
 
 			var value = result.value;
@@ -80,7 +85,12 @@ run(function* () {
 		var r1 = yield async1(0);
 		log('\t', 'async1 returned', r1);
 		yield delay(2000);
-		var r2 = yield async2(r1);
+		var r2 = null;
+		try {
+			r2 = yield async2(r1);
+		} catch (e) {
+			r2 = 2;
+		}
 		log('\t', 'async2 returned', r2);
 		var r3 = yield async3(r2);
 		log('\t', 'async3 returned', r3);

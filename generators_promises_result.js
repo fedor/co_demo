@@ -5,11 +5,16 @@ var run = function(generator_function) {
 
 	return new Promise(function(resolve, reject) {
 		var runner = function(next_value) {
-			try {
-				var result = generator.next(next_value);
-			} catch(e) {
-				reject(e);
-				return;
+			var result = null;
+			if (next_value && next_value.value) {
+				result = next_value;
+			} else {
+				try {
+					result = generator.next(next_value);
+				} catch(e) {
+					reject(e);
+					return;
+				}
 			}
 
 			var value = result.value;
