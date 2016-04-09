@@ -1,4 +1,15 @@
-Before we start:
+Please install Node.js v4 or above from nodejs.org
+
+FIRST PART - ES6 Features
+
+	> git clone https://github.com/foray1010/aftership-es6-sharing
+	> cd aftership-es6-sharing
+	> npm install
+
+----------------------------------------------------------------
+
+SECOND PART - How to avoid callback hell
+
 	> git clone http://github.com/fedor/co_demo
 	> cd co_demo
 	> npm install
