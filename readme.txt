@@ -1,3 +1,5 @@
+if any questions, please mail to mail@fedor.cc
+
 Please install Node.js v4 or above from nodejs.org
 
 FIRST PART - ES6 Features
