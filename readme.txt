@@ -4,7 +4,7 @@ FIRST PART - ES6 Features
 
 	> git clone https://github.com/foray1010/aftership-es6-sharing
 	> cd aftership-es6-sharing
-	> npm install
+	> ./install.sh
 
 ----------------------------------------------------------------
 
