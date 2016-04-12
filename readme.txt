@@ -3,6 +3,7 @@ if any questions, please mail to mail@fedor.cc
 Please install Node.js v4 or above from nodejs.org
 
 FIRST PART - ES6 Features
+SLIDES: https://slides.com/alexfor/deck-1-1
 
 	> git clone https://github.com/foray1010/aftership-es6-sharing
 	> cd aftership-es6-sharing
@@ -11,6 +12,7 @@ FIRST PART - ES6 Features
 ----------------------------------------------------------------
 
 SECOND PART - How to avoid callback hell
+SLIDES: https://github.com/fedor/co_demo/blob/master/presentation.pdf
 
 	> git clone http://github.com/fedor/co_demo
 	> cd co_demo
