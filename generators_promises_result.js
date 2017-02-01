@@ -1,57 +1,42 @@
 var log = require('./log');
 
-var run = function(generator_function) {
-	var generator = generator_function();
-
+var run = function(generatorFunction) {
 	return new Promise(function(resolve, reject) {
-		var runner = function(next_value) {
-			var result = null;
-			if (next_value && next_value.value) {
-				result = next_value;
-			} else {
-				try {
-					result = generator.next(next_value);
-				} catch(e) {
-					reject(e);
-					return;
-				}
-			}
-
-			var value = result.value;
-			if (result.done) {
-				resolve(value);
+		var generator = generatorFunction();
+		var runner = function(nextValue, isError) {
+			var result;
+			try {
+				result = isError ? generator.throw(nextValue) : generator.next(nextValue);
+			} catch (e) {
+				reject(e);
 				return;
 			}
 
-			value
-				.then(function(result) {
-					runner(result);
-				})
-				.catch(function(err) {
-					try {
-						var result = generator.throw(err);
-						runner(result);
-					} catch(e) {
-						reject(e);
-					}
-				});
+			if (result.done) {
+				resolve(result.value);
+				return;
+			}
+
+			result.value
+				.then(function(result) { runner(result, false) })
+				.catch(function(error) { runner(error, true) });
 		};
 
-		runner(generator);	
+		runner(undefined, false);
 	});
 };
 
 // Promise version
 var async1 = function(input) {
 	return run(function* () {
-		log('I\'m async function #1');
+		log('async1, input:', input);
 		return ++input;
 	});
 };
 
 var async2 = function(input) {
 	return run(function* () {
-		log('I\'m async function #2');
+		log('async2, input:', input);
 
 		///////////////////////
 		// Ways to report error
@@ -66,27 +51,30 @@ var async2 = function(input) {
 
 var async3 = function(input) {
 	return run(function* () {
-		log('I\'m async function #3');
+		log('async3, input:', input);
 		return ++input;
 	});
 };
 
-var delay = function(mil) {
+var delay = function(ms) {
 	return new Promise(function(resolve, reject) {
-		log('I\'m', mil, 'ms async delay...');
-		setTimeout(resolve, mil);
+		log('delay, ms:', ms);
+		setTimeout(
+			function() {
+				log('delay: done');
+				resolve();
+			},
+			ms
+		);
 	});
 };
 
 run(function* () {
 	try {
 		var r1 = yield async1(0);
-		log('\t', 'async1 returned', r1);
 		yield delay(2000);
 		var r2 = yield async2(r1);
-		log('\t', 'async2 returned', r2);
 		var r3 = yield async3(r2);
-		log('\t', 'async3 returned', r3);
 		log('RESULT', r3);
 		return r3;
 	} catch (e) {

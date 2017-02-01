@@ -1,12 +1,12 @@
-// Generators version
+// Generators example
 // Read about generator functions and generators:
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*
 'use strict';
 var log = require('./log');
 
-var generator_function = function* (input1) {
+var generatorFunction = function* (input1) {
 	log('Generator block #1');
-	var input2 = yield ++input1;
+	var input2 = yield 'string from generator';
 
 	log('Generator block #2');
 	var input3 = yield ++input2;
@@ -25,8 +25,9 @@ function delay (time) {
 	}
 }
 
+// control code
 try {
-	var generator = generator_function(0); // --> input1
+	var generator = generatorFunction(0); // --> input1
 	log('Generator initialized', generator, '\n');
 
 	var r1 = generator.next();
@@ -41,7 +42,7 @@ try {
 	var r3 = generator.next(2); // --> input3
 	log('\treturned', r3, '\n');
 
-	var r4 = generator.next(0);
+	var r4 = generator.next();
 	log('\treturned', r4, '\n');
 } catch (e) {
 	log('Catched! ' + e);

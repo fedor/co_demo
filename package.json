@@ -15,12 +15,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://korshunov@github.com/korshunov/co_demo.git"
+    "url": "https://github.com/fedor/co_demo.git"
   },
   "author": "Fedor Korshunov <mail@fedor.cc>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/korshunov/co_demo/issues"
+    "url": "https://github.com/fedor/co_demo/issues"
   },
-  "homepage": "https://github.com/korshunov/co_demo#readme"
+  "homepage": "https://github.com/fedor/co_demo#readme"
 }

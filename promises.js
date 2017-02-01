@@ -3,24 +3,22 @@ var log = require('./log');
 // Promise version
 var async1 = function(input) {
 	return new Promise(function(resolve, reject) {
-		log('I\'m async function #1');
+		log('async1, input:', input);
 		resolve(++input);
 	});
 };
 
 var async2 = function(input) {
 	return new Promise(function(resolve, reject) {
-		log('I\'m async function #2');
+		log('async2, input:', input);
 
 		///////////////////////
 		// Ways to report error
 		///////////////////////
 		
 		// reject(Error('error callback from sync2'));
-		
 		// return reject(Error('error callback from sync2'));
-		
-		// throw Error('throw from async2');
+		// throw new Error('throw from async2');
 
 		///////////////////////
 		resolve(++input);
@@ -29,15 +27,21 @@ var async2 = function(input) {
 
 var async3 = function(input) {
 	return new Promise(function(resolve, reject) {
-		log('I\'m async function #3');
+		log('async3, input:', input);
 		resolve(++input);
 	});
 };
 
-var delay = function(mil) {
+var delay = function(ms) {
 	return new Promise(function(resolve, reject) {
-		log('I\'m', mil, 'ms async delay...');
-		setTimeout(resolve, mil);
+		log('delay, ms:', ms);
+		setTimeout(
+			function() {
+				log('delay: done');
+				resolve();
+			},
+			ms
+		);
 	});
 };
 
@@ -52,8 +56,8 @@ async1(0)
 		return async3(r3);
 	})
 	.then(function(r4) {
-		log('Result: ' + r4);
+		log('Result:', r4);
 	})
 	.catch(function(e) {
-		log('Catched! ' + e);
+		log('Catched!', e);
 	});
