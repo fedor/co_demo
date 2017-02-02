@@ -20,7 +20,7 @@ Data and execution flow in the examples:
 	PROS:
 	 - Safe
 	 - Readable: no Callback Hell
-	 - Centralized error handling
+	 - Centralised error handling
 	CONS:
 	 - Sync
 
@@ -30,7 +30,7 @@ Data and execution flow in the examples:
 	 - Async
 	CONS:
 	 - Unsafe: no guarantee to catch "throw new Error()"
-	 - No centralized errors handling
+	 - No centralised error handling
 	 - Callback hell
 
 3. Promises.
@@ -41,7 +41,7 @@ Data and execution flow in the examples:
 
 	PROS:
 	 - Async
-	 - Centralized error handling
+	 - Centralised error handling
 	 - Less callback hell
 	CONS:
 	 - mini-Callback Hell
@@ -93,9 +93,9 @@ Data and execution flow in the examples:
 	PROS:
 	 - Async
 	 - Safe
-	 - Centralized Errors Handling
-	 - No callback hell while uses run(function *(){...})
-	 - Single way to report error across the code.
+	 - Centralised error handling
+	 - No callback hell
+	 - Single way to report an error
 	NOTE:
 	 - async2() error report was simplified with runner
 	 - delay() still require manual promisification

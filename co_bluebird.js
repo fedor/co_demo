@@ -2,34 +2,28 @@
 var co = require('co');
 var log = require('./log');
 
-var async1 = function(input) {
-	return co(function *() {
-		log('async1, input:', input);
-		return ++input;
-	});
-};
+var async1 = co.wrap(function* (input) {
+	log('async1, input:', input);
+	return ++input;
+});
 
-var async2 = function(input) {
-	return co(function *() {
-		log('async2, input:', input);
+var async2 = co.wrap(function* (input) {
+	log('async2, input:', input);
 
-		///////////////////////
-		// Ways to report error
-		///////////////////////
-		
-		// throw new Error('throw from async2');
+	///////////////////////
+	// Ways to report error
+	///////////////////////
+	
+	// throw new Error('throw from async2');
 
-		///////////////////////
-		return ++input;
-	});
-};
+	///////////////////////
+	return ++input;
+});
 
-var async3 = function(input) {
-	return co(function *() {
-		log('async3, input:', input);
-		return ++input;
-	});
-};
+var async3 = co.wrap(function* (input) {
+	log('async3, input:', input);
+	return ++input;
+});
 
 // promisify for async version
 // STEP 1: create async function with default callback interface
@@ -62,6 +56,6 @@ co(function *() {
 		log('Catched!', e);
 	}
 })
-.catch(function(e) {
-	log('Catched! ' + e);
-});
+// .catch(function(e) {
+// 	log('Catched! ' + e);
+// });
